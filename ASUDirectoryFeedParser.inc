@@ -54,7 +54,15 @@ class ASUDirectoryFeedParser extends FeedsParser {
         }
 
         /* Profile image */
-        $p['imageurl'] = "https://webapp4.asu.edu/directory-ws/services/public/image/v1.0?eid=" . $p['eid'];
+        $url = "https://wsi.asu.edu/directory_photo/" . $p['eid'] . ".image";
+        if(@GetImageSize($url))
+        {   
+          $p['imageurl'] = $url;
+        }   
+        else
+        {   
+          $p['imageurl'] = ""; 
+        }   
 
         $people[] = $p;
       } // End of foreach ($sx->{'asu-directory-person'} as $person)
@@ -103,6 +111,15 @@ class ASUDirectoryFeedParser extends FeedsParser {
 
           /* Profile image */
           $p['imageurl'] = "https://webapp4.asu.edu/directory-ws/services/public/image/v1.0?eid=" . $p['eid'];
+          $url = "https://wsi.asu.edu/directory_photo/" . $p['eid'] . ".image";
+          if(@GetImageSize($url))
+          {   
+            $p['imageurl'] = $url;
+          }   
+          else
+          {   
+            $p['imageurl'] = ""; 
+          }   
 
           $people[] = $p;
 
